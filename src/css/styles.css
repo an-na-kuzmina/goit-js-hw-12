@@ -77,7 +77,8 @@ img {
   border-color: #000;
 }
 
-.search-btn {
+.search-btn,
+.load-more-btn {
   border-radius: 8px;
   padding: 8px 16px;
   width: 91px;
@@ -89,8 +90,18 @@ img {
   cursor: pointer;
 }
 
-.search-btn:hover {
+.search-btn:hover,
+.load-more-btn:hover {
   background: #6c8cff;
+}
+
+.load-more-btn {
+  width: 125px;
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+
+  margin: o auto;
 }
 
 /* Gallery */
