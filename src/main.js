@@ -12,9 +12,7 @@ const form = document.querySelector('#search-form');
 const input = document.querySelector('#search-input');
 const loader = document.querySelector('#loader');
 
-//const list = document.querySelector('#gallery');
 const loadMoreBtn = document.querySelector('.load-more-btn');
-//loadMoreBtn.addEventListener('click', loadMoreHandler);
 
 let page = 1;
 let perPage = 15;
