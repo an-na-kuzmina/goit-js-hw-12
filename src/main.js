@@ -20,47 +20,44 @@ let searchQuery = '';
 
 form.addEventListener('submit', async event => {
   event.preventDefault();
-  page = 1;
-  searchQuery = input.value.trim();
 
   cleanGallery();
-
+  loader.classList.remove('hidden');
+  searchQuery = input.value.trim();
+  page = 1;
   loadMoreBtn.classList.add('hidden');
   await performSearch();
 });
 
-loadMoreBtn.addEventListener('click', () => {
+loadMoreBtn.addEventListener('click', async () => {
   page++;
-  performSearch();
+  await performSearch();
 });
 
 async function performSearch() {
-  loader.classList.remove('hidden');
-
+  loader.classList.add('hidden');
   if (searchQuery === '') {
     showError('Please enter a search query.');
-    loader.classList.add('hidden');
+
     return;
   }
 
   try {
     const data = await searchImagesByUserQuery(searchQuery, page, perPage);
+
     if (data.total === 0) {
       showError(
         'Sorry, there are no images matching your search query. Please try again!'
       );
     } else {
       if (page > 1) {
-        const galleryHeightB = document
-          .querySelector('.list')
-          .getBoundingClientRect().height;
         renderImages(data);
-        const galleryHeightA = document
+        const galleryHeight = document
           .querySelector('.list')
           .getBoundingClientRect().height;
-        console.log(document.querySelector('.list').getBoundingClientRect());
+
         window.scrollBy({
-          top: (galleryHeightA - galleryHeightB) * 0.6,
+          top: galleryHeight * 2,
           behavior: 'smooth',
         });
       } else {
@@ -87,8 +84,8 @@ async function performSearch() {
     }
   } catch (error) {
     showError(error.message);
-  } finally {
     loader.classList.add('hidden');
+  } finally {
     input.value = '';
   }
 }
