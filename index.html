@@ -8,7 +8,7 @@
     <script type="module" crossorigin src="/goit-js-hw-12/commonHelpers.js"></script>
     <link rel="modulepreload" crossorigin href="/goit-js-hw-12/assets/vendor-D1eTGYtO.js">
     <link rel="stylesheet" crossorigin href="/goit-js-hw-12/assets/vendor-DumFYO8Z.css">
-    <link rel="stylesheet" crossorigin href="/goit-js-hw-12/assets/index-DNMUQOMt.css">
+    <link rel="stylesheet" crossorigin href="/goit-js-hw-12/assets/index-DNQOkOwH.css">
   </head>
   <body>
     <section>
@@ -22,13 +22,14 @@
         />
         <button class="search-btn" type="submit">Search</button>
       </form>
-      <div class="loader-div" id="loader" style="display: none">
-        <span class="loading hidden"
+
+      <ul class="list" id="gallery"></ul>
+      <div class="loader-div hidden" id="loader">
+        <span class="loading"
           >Loading images, please wait...
           <span class="loader"></span>
         </span>
       </div>
-      <ul class="list" id="gallery"></ul>
       <button class="load-more-btn hidden" type="button">Load more</button>
     </section>
 
