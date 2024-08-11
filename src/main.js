@@ -10,7 +10,7 @@ import {
 
 const form = document.querySelector('#search-form');
 const input = document.querySelector('#search-input');
-const loader = document.querySelector('#loader');
+const loader = document.querySelector('.loader-div');
 
 const loadMoreBtn = document.querySelector('.load-more-btn');
 
@@ -22,10 +22,11 @@ form.addEventListener('submit', async event => {
   event.preventDefault();
 
   cleanGallery();
-  loader.classList.remove('hidden');
+
   searchQuery = input.value.trim();
   page = 1;
   loadMoreBtn.classList.add('hidden');
+
   await performSearch();
 });
 
@@ -35,10 +36,10 @@ loadMoreBtn.addEventListener('click', async () => {
 });
 
 async function performSearch() {
-  loader.classList.add('hidden');
+  loader.classList.remove('hidden');
   if (searchQuery === '') {
     showError('Please enter a search query.');
-
+    loader.classList.add('hidden');
     return;
   }
 
@@ -84,8 +85,8 @@ async function performSearch() {
     }
   } catch (error) {
     showError(error.message);
-    loader.classList.add('hidden');
   } finally {
+    loader.classList.add('hidden');
     input.value = '';
   }
 }
